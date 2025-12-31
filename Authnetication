@@ -1,1 +1,42 @@
+Username Enumeration via Login Functionality
+
+Summary
+The application leaks user existence through different authentication error
+responses, allowing an attacker to enumerate valid usernames.
+
+Target & Scope
+- Platform: PortSwigger Web Security Academy
+- Feature Tested: Login
+- Access Level: Unauthenticated
+
+Vulnerability Description
+During login attempts, the application responds differently when a valid
+username is supplied versus an invalid one. This enables username enumeration.
+
+Steps to Reproduce
+1. Intercept login request using Burp Suite.
+2. Send login request with an invalid username.
+3. Observe error message.
+4. Send login request with a valid username and incorrect password.
+5. Compare responses.
+
+Proof of Concept
+- Invalid username → `Invalid username or password`
+- Valid username → `Incorrect password`
+
+Impact
+- Enables targeted brute-force attacks
+- Increases account takeover risk
+
+OWASP Mapping
+- OWASP Top 10: A07 – Identification and Authentication Failures
+
+Remediation
+- Use generic error messages
+- Apply rate limiting
+- Monitor failed login attempts
+
+Conclusion
+Username enumeration weakens authentication security and should be remediated
+to prevent further attacks.
 
