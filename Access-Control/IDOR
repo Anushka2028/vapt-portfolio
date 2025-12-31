@@ -1,1 +1,47 @@
+ Insecure Direct Object Reference (IDOR) 
+
+Summary
+The application is vulnerable to Insecure Direct Object Reference (IDOR), where an attacker can access another user’s data by modifying object identifiers in a request without proper authorization checks.
+
+Target & Scope
+- Platform: PortSwigger Web Security Academy
+- Vulnerability Type: Broken Access Control (IDOR)
+- Access Level: Authenticated
+- Testing Type: Manual Web Application Testing
+
+Vulnerability Description
+The application exposes direct object references (such as user IDs or order IDs) in HTTP requests. The server fails to verify whether the authenticated user is authorized to access the requested object, allowing unauthorized data access.
+
+Steps to Reproduce
+1. Log in as a normal user.
+2. Navigate to a page that displays user-specific information.
+3. Intercept the request using Burp Suite.
+4. Identify an object identifier parameter (e.g., `userId`, `accountId`, `orderId`).
+5. Modify the identifier to another user’s value.
+6. Forward the request and observe the response.
+
+
+## Proof of Concept (PoC)
+**Original Request**
+
+The server responds with data belonging to another user, confirming the IDOR vulnerability.
+
+Impact
+- Unauthorized access to sensitive user data
+- Potential data leakage and privacy violations
+- Can lead to full account compromise when chained with other vulnerabilitie
+
+OWASP Mapping
+- OWASP Top 10 -- A01 – Broken Access Control**
+
+ Remediation
+- Enforce server-side authorization checks
+- Avoid exposing direct object references
+- Use indirect object references or UUIDs
+- Validate ownership of resources before returning data
+
+Conclusion
+IDOR vulnerabilities occur due to missing authorization checks and pose a serious risk to user data confidentiality.
+Proper access control validation is essential to prevent unauthorized access.
+
 
