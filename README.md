@@ -9,7 +9,6 @@ focusing on OWASP Top 10 vulnerabilities.
 - Manual web application testing
 - Authentication & Authorization testing
 - Business logic flaw identification
-- PoC creation and vulnerability reporting
 - OWASP Top 10 & CVSS mapping
 
 ## Tools Used
