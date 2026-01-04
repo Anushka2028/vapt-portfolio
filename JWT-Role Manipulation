@@ -1,1 +1,35 @@
+JWT Role Manipulation
+
+Summary
+JWT token allows role manipulation without proper server validation.
+
+Affected Endpoint
+GET /api/dashboard
+
+Vulnerability Type
+Broken Access Control / Authentication Flaw
+
+Severity
+High
+
+Description
+JWT claims such as `role` and `userId` are trusted by the backend. Modifying these claims grants unauthorized access.
+
+Steps to Reproduce
+1. Login as a normal user.
+2. Capture JWT token in Burp.
+3. Decode JWT and modify `role` to admin.
+4. Replay request in Repeater and observe access.
+
+Impact
+- Privilege escalation
+- Unauthorized access to restricted resources
+
+Remediation
+- Validate JWT signatures and claims server-side
+- Do not trust client-side data for authorization
+
+References
+- OWASP Top 10 A01
+- OWASP Top 10 A07
 
