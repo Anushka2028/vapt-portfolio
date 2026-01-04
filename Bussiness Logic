@@ -1,1 +1,34 @@
+Price Manipulation
+
+Summary
+Business logic flaw allows price modification in checkout.
+
+Affected Endpoint
+POST /api/checkout
+
+Vulnerability Type
+Business Logic Flaw
+
+Severity
+Medium
+
+Description
+User-controlled parameters like `price` and `quantity` are accepted by server without validation.
+
+Steps to Reproduce
+1.Add product to the cart
+2.send the api/checkout request to the repeater
+3.Modify the price to lower value
+4.Replay the request and observe discounted checkout
+
+Impact
+- Financial loss
+- Unauthorized transactions
+
+Remediation
+- Validate price at server side
+-Implement Integrity check
+
+References
+- OWASP Top 10 – Business Logic
 
